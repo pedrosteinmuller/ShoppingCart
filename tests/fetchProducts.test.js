@@ -7,7 +7,6 @@ describe('1 - Testes da função fetchProducts', () => {
     expect(typeof fetchProducts).toBe('function');
     expect.assertions(1);
   });
-});
   it('Testa se com argumento na função fetchProducts a função fetch foi chamada', async () => {
     await fetchProducts('computador')
     expect(fetch).toHaveBeenCalled();
@@ -32,3 +31,5 @@ describe('1 - Testes da função fetchProducts', () => {
       expect.assertions(1);
     }
   });
+});
+  

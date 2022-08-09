@@ -4,7 +4,7 @@ const fetchProducts = async (computador) => {
     const results = await response.json();
     return results;
   } catch (error) {
-    return 'You must provide an url';
+    throw new Error('You must provide an url');
   }
   };
 
