@@ -51,9 +51,9 @@ const createCartItemElement = ({ sku, name, salePrice }) => {
   return li;
 };
 
-//estava sentindo muita dificuldade neste requisito 4, pedi ajuda ao amigo Thiago Lopes que me ajudou
-//a criar a lógica e desenvolver, além disso, procurei referências na internet que me auxiliasse tambem,
-//como o site developer.mozzila.
+// estava sentindo muita dificuldade neste requisito 4, pedi ajuda ao amigo Thiago Lopes que me ajudou
+// a criar a lógica e desenvolver, além disso, procurei referências na internet que me auxiliasse tambem,
+// como o site developer.mozzila.
 
 const addProductToCart = async () => {
   const buttonsPutToCart = await document.querySelectorAll('.item__add');
