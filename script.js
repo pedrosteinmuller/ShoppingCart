@@ -1,3 +1,5 @@
+// const { fetchItem } = require("./helpers/fetchItem");
+
 const listItems = document.querySelector('.items');
 
 const createProductImageElement = (imageSource) => {
@@ -22,7 +24,6 @@ const createProductItemElement = ({ id: sku, title: name, thumbnail: image }) =>
   section.appendChild(createCustomElement('span', 'item__title', name));
   section.appendChild(createProductImageElement(image));
   section.appendChild(createCustomElement('button', 'item__add', 'Adicionar ao carrinho!'));
-
   return section;
 };
 
@@ -35,10 +36,11 @@ const itemsList = async () => {
   });
 };
 
-const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
+const addProductFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
 
-const cartItemClickListener = (event) => {
-  // coloque seu código aqui
+const cartItemClickListener = async (event) => {
+  // referencia: https://developer.mozilla.org/en-US/docs/Web/API/Element/remove
+  event.target.remove();
 };
 
 const createCartItemElement = ({ sku, name, salePrice }) => {
@@ -49,6 +51,28 @@ const createCartItemElement = ({ sku, name, salePrice }) => {
   return li;
 };
 
-window.onload = () => { 
-  itemsList();
+//estava sentindo muita dificuldade neste requisito 4, pedi ajuda ao amigo Thiago Lopes que me ajudou
+//a criar a lógica e desenvolver, além disso, procurei referências na internet que me auxiliasse tambem,
+//como o site developer.mozzila.
+
+const addProductToCart = async () => {
+  const buttonsPutToCart = await document.querySelectorAll('.item__add');
+  const olList = document.querySelector('.cart__items');
+  
+  buttonsPutToCart.forEach((element) => {
+    element.addEventListener('click', async () => {
+     const skuList = addProductFromProductItem(element.parentNode);
+     // referência parentNode: https://developer.mozilla.org/pt-BR/docs/Web/API/Node/parentNode
+     const itemList = await fetchItem(skuList);
+     const { id: sku, title: name, price: salePrice } = itemList;
+    //  console.log(item);
+     const cardList = createCartItemElement({ sku, name, salePrice });
+     olList.appendChild(cardList);
+    });
+  });
+};
+
+window.onload = async () => { 
+  await itemsList();
+  await addProductToCart();
 };
