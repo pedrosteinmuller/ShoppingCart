@@ -73,6 +73,8 @@ const addProductToCart = async () => {
   });
 };
 
+// na mentoria de esquenta hoje 09/08/2022 o guthias fez um exemplo similar,
+// então utilizei como referência a aula gravada que foi postada no slack
 const clearShoppingCart = () => {
   clearListButton.addEventListener('click', () => {
   olList.innerHTML = '';
