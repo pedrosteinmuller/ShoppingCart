@@ -1,6 +1,8 @@
 // const { fetchItem } = require("./helpers/fetchItem");
 
 const listItems = document.querySelector('.items');
+const clearListButton = document.querySelector('.empty-cart');
+const olList = document.querySelector('.cart__items');
 
 const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
@@ -57,8 +59,7 @@ const createCartItemElement = ({ sku, name, salePrice }) => {
 
 const addProductToCart = async () => {
   const buttonsPutToCart = await document.querySelectorAll('.item__add');
-  const olList = document.querySelector('.cart__items');
-  
+
   buttonsPutToCart.forEach((element) => {
     element.addEventListener('click', async () => {
      const skuList = addProductFromProductItem(element.parentNode);
@@ -72,7 +73,14 @@ const addProductToCart = async () => {
   });
 };
 
+const clearShoppingCart = () => {
+  clearListButton.addEventListener('click', () => {
+  olList.innerHTML = '';
+  });
+};
+
 window.onload = async () => { 
   await itemsList();
   await addProductToCart();
+  await clearShoppingCart();
 };
