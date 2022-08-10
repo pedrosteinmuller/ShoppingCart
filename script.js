@@ -43,7 +43,7 @@ const addProductFromProductItem = (item) => item.querySelector('span.item__sku')
 const cartItemClickListener = (event, sku) => {
   // referencia: https://developer.mozilla.org/en-US/docs/Web/API/Element/remove
   event.target.remove();
-  //referência da aula de monitoria esquenta do guthias e hellen e aula gravada disponibilizada no mesmo dia 09/08
+  // referência da aula de monitoria esquenta do guthias e hellen e aula gravada disponibilizada no mesmo dia 09/08
   saveCartLS = saveCartLS.filter((element) => element.id !== sku);
   saveCartItems(saveCartLS);
 };
@@ -56,12 +56,12 @@ const createCartItemElement = ({ id: sku, title: name, price: salePrice }) => {
   return li;
 };
 
-  //referência da aula de monitoria esquenta do guthias e hellen e aula gravada disponibilizada no mesmo dia 09/08
+  // referência da aula de monitoria esquenta do guthias e hellen e aula gravada disponibilizada no mesmo dia 09/08
 const addItensLS = (itemList) => {
   saveCartLS.push(itemList);
   saveCartItems('cartItems', saveCartLS);
 };
-  //referência da aula de monitoria esquenta do guthias e hellen e aula gravada disponibilizada no mesmo dia 09/08
+  // referência da aula de monitoria esquenta do guthias e hellen e aula gravada disponibilizada no mesmo dia 09/08
 const renderLS = (param) => {
   param.forEach((item) => {
     const itemList = createCartItemElement(item);
