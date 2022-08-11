@@ -44,7 +44,7 @@ const addProductFromProductItem = (item) => item.querySelector('span.item__sku')
 const calculatePrice = async () => {
   const totalValue = await saveCartLS.reduce((acc, curr) => acc + curr.price, 0);
   console.log(saveCartLS);
- totalPrice.innerText = Math.floor(`${totalValue}`);
+ totalPrice.innerText = `${totalValue}`;
 };
 
 const cartItemClickListener = (event, sku) => {
@@ -71,6 +71,7 @@ const createCartItemElement = ({ id: sku, title: name, price: salePrice }) => {
 const addItensLS = (itemList) => {
   saveCartLS.push(itemList);
   saveCartItems('cartItems', saveCartLS);
+  calculatePrice();
 };
   // referência da aula de monitoria esquenta do guthias e hellen e aula gravada disponibilizada no mesmo dia 09/08
 const renderLS = (param) => {
@@ -105,8 +106,8 @@ const addProductToCart = () => {
 const clearShoppingCart = async () => {
   clearListButton.addEventListener('click', () => {
   olList.innerHTML = '';
-  });
   calculatePrice();
+  });
 };
 
 window.onload = async () => { 
