@@ -56,8 +56,11 @@ const addProductFromProductItem = (item) => item.querySelector('span.item__sku')
 
 const calculatePrice = async () => {
   const totalValue = await saveCartLS.reduce((acc, curr) => acc + curr.price, 0);
-  console.log(saveCartLS);
- totalPrice.innerText = `${totalValue}`;
+  totalPrice.innerText = `${totalValue.toLocaleString({ style: 'currency', currency: 'USD' })}`
+  .replace(/,/g, '');
+  //referencia para arredondamento:
+  //https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Number/toLocaleString
+  //https://www.codegrepper.com/code-examples/javascript/how+to+remove+commas+in+numbers+with+javascript
 };
 
 const cartItemClickListener = (event, sku) => {
@@ -119,6 +122,7 @@ const addProductToCart = () => {
 const clearShoppingCart = async () => {
   clearListButton.addEventListener('click', () => {
   olList.innerHTML = '';
+  saveCartLS = [];
   calculatePrice();
   });
 };
