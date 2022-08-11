@@ -1,6 +1,7 @@
 const listItems = document.querySelector('.items');
 const clearListButton = document.querySelector('.empty-cart');
 const olList = document.querySelector('.cart__items');
+const totalPrice = document.querySelector('.total-price');
 
 let saveCartLS = [];
 
@@ -40,12 +41,19 @@ const itemsList = async () => {
 
 const addProductFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
 
+const calculatePrice = async () => {
+  const totalValue = await saveCartLS.reduce((acc, curr) => acc + curr.price, 0);
+  console.log(saveCartLS);
+ totalPrice.innerText =  Math.floor(`${totalValue}`);
+};
+
 const cartItemClickListener = (event, sku) => {
   // referencia: https://developer.mozilla.org/en-US/docs/Web/API/Element/remove
   event.target.remove();
   // referência da aula de monitoria esquenta do guthias e hellen e aula gravada disponibilizada no mesmo dia 09/08
-  saveCartLS = saveCartLS.filter((element) => element.id !== sku);
+  saveCartLS = saveCartLS.filter((element) => element.id !== sku); // verificar 
   saveCartItems(saveCartLS);
+  calculatePrice();
 };
 
 const createCartItemElement = ({ id: sku, title: name, price: salePrice }) => {
@@ -78,31 +86,30 @@ const addProductToCart = () => {
   buttonsPutToCart.forEach((element) => {
     element.addEventListener('click', async () => {
      const skuList = addProductFromProductItem(element.parentNode);
-    //  console.log(skuList);
      // referência parentNode: https://developer.mozilla.org/pt-BR/docs/Web/API/Node/parentNode
-     const itemList = await fetchItem(skuList);
-    //  console.log(sku);
+     const itemList = await fetchItem(skuList); // analisar o itemList e o saveCarts
+
      const cardList = createCartItemElement(itemList);
-     console.log(cardList);
      olList.appendChild(cardList);
      addItensLS(itemList);
+     calculatePrice();
     });
   });
 };
 
 // na mentoria de esquenta hoje 09/08/2022 o guthias fez um exemplo similar,
 // então utilizei como referência a aula gravada que foi postada no slack
-const clearShoppingCart = () => {
+const clearShoppingCart = async () => {
   clearListButton.addEventListener('click', () => {
   olList.innerHTML = '';
   });
+  calculatePrice();
 };
 
 window.onload = async () => { 
   await itemsList();
   addProductToCart();
-  clearShoppingCart();
+  await clearShoppingCart();
   saveCartLS = JSON.parse(getSavedCartItems('cartItems')) || [];
-  console.log(saveCartLS);
   renderLS(saveCartLS);
 };
