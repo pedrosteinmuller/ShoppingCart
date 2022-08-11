@@ -30,9 +30,22 @@ const createProductItemElement = ({ id: sku, title: name, thumbnail: image }) =>
   return section;
 };
 
+const loadingOn = () => {
+  const loadOn = document.createElement('p'); // adicionar o texto
+  loadOn.className = 'loading';      
+  loadOn.innerText = 'carregando...';
+  listItems.appendChild(loadOn);
+}; 
+
+const loadingOff = () => {
+  const loadOffFinish = document.querySelector('.loading'); // remove o texto
+  loadOffFinish.remove();
+};
+
 const itemsList = async () => {
+  loadingOn(); // adicionar o texto carregando aqui (antes da requisicao)
   const resultsList = await fetchProducts();
-  // console.log(resultsList);
+  loadingOff(); // remover o texto carregando aqui (depois da requiscao)
   resultsList.results.forEach(({ id, title, thumbnail }) => {
     const returned = createProductItemElement({ id, title, thumbnail });
     listItems.appendChild(returned);
@@ -91,9 +104,9 @@ const addProductToCart = () => {
     element.addEventListener('click', async () => {
      const skuList = addProductFromProductItem(element.parentNode);
      // referência parentNode: https://developer.mozilla.org/pt-BR/docs/Web/API/Node/parentNode
-     const itemList = await fetchItem(skuList); // analisar o itemList e o saveCarts
-
+     const itemList = await fetchItem(skuList); 
      const cardList = createCartItemElement(itemList);
+     
      olList.appendChild(cardList);
      addItensLS(itemList);
      calculatePrice();
