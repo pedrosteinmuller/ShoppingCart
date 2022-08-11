@@ -44,14 +44,17 @@ const addProductFromProductItem = (item) => item.querySelector('span.item__sku')
 const calculatePrice = async () => {
   const totalValue = await saveCartLS.reduce((acc, curr) => acc + curr.price, 0);
   console.log(saveCartLS);
- totalPrice.innerText =  Math.floor(`${totalValue}`);
+ totalPrice.innerText = Math.floor(`${totalValue}`);
 };
 
 const cartItemClickListener = (event, sku) => {
   // referencia: https://developer.mozilla.org/en-US/docs/Web/API/Element/remove
   event.target.remove();
+  const remove = saveCartLS.findIndex((e) => e.id === sku);
+  // referencia findIndex: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex
+  saveCartLS.splice(remove, 1);
   // referência da aula de monitoria esquenta do guthias e hellen e aula gravada disponibilizada no mesmo dia 09/08
-  saveCartLS = saveCartLS.filter((element) => element.id !== sku); // verificar 
+  // saveCartLS = saveCartLS.filter((element) => element.id !== sku); // verificar 
   saveCartItems(saveCartLS);
   calculatePrice();
 };
