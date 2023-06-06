@@ -7,9 +7,8 @@ Consiste em uma aplicação web utilizando a API do Mercado Livre para desenvolv
 
 ### Demonstração
 
-👨🏻‍💻 **Acessar:** _[Clique Aqui](shopping-cart-beta-blush.vercel.app)_
+👨🏻‍💻 **Acessar:** _[Clique Aqui](https://shopping-cart-beta-blush.vercel.app/)_
 
 <p align="center">
   <img src="https://github.com/guilherme-ac-fernandes/shopping-cart/blob/main/shopping-cart.gif" alt="Shopping Cart Gif - Demostração"/>
 </p>
-
