@@ -1,13 +1,15 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
+# Projeto Shopping Cart 🛒
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
+Consiste em uma aplicação web utilizando a API do Mercado Livre para desenvolver uma Carrinho de Compras dinâmico empregando funções assíncronas (presente na pasta `helpers`) e implementações de seus testes (presente na pasta `tests`). Essa página é possível adicionar um produto ao carrinho de compras; remover um item ao clicar sobre ele; armazenamento dos dados adicionados ao carrinho no LocalStorage do navegador e remover todos os produtos adicionados ao carrinho.
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+* Construída utilizado HTML5, CSS3 e JavaScript.
+* Observação: a estilização da página foi fornecido pela Trybe, apenas parte do layout dos produtos e da lista de produtos foi modificado.
+
+### Demonstração
+
+👨🏻‍💻 **Acessar:** _[Clique Aqui](shopping-cart-beta-blush.vercel.app)_
+
+<p align="center">
+  <img src="https://github.com/guilherme-ac-fernandes/shopping-cart/blob/main/shopping-cart.gif" alt="Shopping Cart Gif - Demostração"/>
+</p>
+
